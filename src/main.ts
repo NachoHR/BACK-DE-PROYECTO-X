@@ -3,7 +3,6 @@ import { NestFactory } from '@nestjs/core';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import * as express from 'express';
 import * as serverless from 'serverless-http';
-import * as helmet from 'helmet';
 import { AppModule } from './app.module';
 
 const bootstrap = async (module: any) => {
@@ -12,7 +11,6 @@ const bootstrap = async (module: any) => {
 
   nestApp.setGlobalPrefix('/.netlify/functions/server');
   nestApp.enableCors();
-  nestApp.use(helmet());
   nestApp.useGlobalPipes(
     new ValidationPipe({
       transform: true,
